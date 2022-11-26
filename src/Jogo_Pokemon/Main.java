@@ -11,13 +11,14 @@ public class Main {
 
 	public static void main(String[] args) throws IOException, InterruptedException {
 		limparTela();
-
 		Scanner scan = new Scanner(System.in);
 		int opcaoMenu = 0;
 		
 		apresentaçãoInicial();
 
 		cadastroTreinador(scan);
+
+		escolhaInicial(scan);
 
 		do {
 			limparTela();
@@ -33,6 +34,30 @@ public class Main {
 		} while (opcaoMenu != 4);
 		scan.close();
     }
+
+	private static void escolhaInicial(Scanner scan) throws IOException, InterruptedException {
+		limparTela();
+		
+		System.out.println("=================================");
+		System.out.printf("\n    Está na hora de escolher \n");
+		System.out.printf("\n       seu pokemon inicial \n\n");
+		System.out.println("=================================");
+		Thread.sleep(3000);
+		limparTela();
+
+		System.out.println("=================================");
+		System.out.println("        ESCOLHA SEU INICIAL:");
+		System.out.println("=================================");
+		System.out.println("           1 - Squirtle");
+		System.out.println("           2 - Bulbasaur");
+        System.out.println("           3 - Charmander");
+		System.out.println("=================================");
+		
+		System.out.print("        >> Pokemon:");
+		String num = scan.nextLine();
+		System.in.read();
+
+	}
 
 	private static void cadastroTreinador( Scanner scan) throws IOException, InterruptedException {
 		limparTela();
