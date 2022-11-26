@@ -17,6 +17,8 @@ public class Main {
 		
 		apresentaçãoInicial();
 
+		cadastroTreinador(scan);
+
 		do {
 			limparTela();
 			menuPincipal();
@@ -31,6 +33,39 @@ public class Main {
 		} while (opcaoMenu != 4);
 		scan.close();
     }
+
+	private static void cadastroTreinador( Scanner scan) throws IOException, InterruptedException {
+		limparTela();
+		System.in.read();
+		System.out.println("=================================");
+		System.out.println("\n    Como quer ser chamado?");
+		
+		System.out.print("    >> Nome:");
+		String nome = scan.nextLine();
+
+		System.out.print("    >> Gênero:");
+		String genero = scan.nextLine();
+
+		System.out.print("    >> Idade:");
+		String idadeSTR = scan.nextLine();
+		int idade = Integer.parseInt(idadeSTR);
+		Treinador iniciante = new Treinador(nome, genero, idade);
+		System.out.println("\n=================================");
+		Thread.sleep(1000);
+		apresentacao();
+	}
+
+	private static void apresentacao() throws InterruptedException, IOException {
+		limparTela();
+		System.out.println("=================================");
+		System.out.printf("\n        Parabéns, %s", Pessoa.getNome());
+		System.out.printf("\n     Você acaba de se tornar");
+		System.out.printf("\n      um treinador Pokemon! \n\n");
+		System.out.printf("      -- Precione ENTER -- \n");
+		System.out.println("=================================");
+		System.in.read();
+	}
+
 	private static boolean processarOpcaoMenu(Scanner scan, int opcaoMenu) {
 		switch (opcaoMenu){
 			case 1:
