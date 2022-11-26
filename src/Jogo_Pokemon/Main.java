@@ -37,7 +37,7 @@ public class Main {
 
 	private static void escolhaInicial(Scanner scan) throws IOException, InterruptedException {
 		limparTela();
-		
+		System.in.read();
 		System.out.println("=================================");
 		System.out.printf("\n    Está na hora de escolher \n");
 		System.out.printf("\n       seu pokemon inicial \n\n");
@@ -54,8 +54,28 @@ public class Main {
 		System.out.println("=================================");
 		
 		System.out.print("        >> Pokemon:");
-		String num = scan.nextLine();
-		System.in.read();
+		String numStr = scan.nextLine();
+		int num = Integer.parseInt(numStr);
+
+		if (num == 1){
+            PokemonEstagio0 inicial = new PokemonEstagio0("Squirtle", 1);
+			Treinador.Pokemons_Capturados.add(inicial);
+			Treinador.time.add(inicial);
+        }else if (num == 2){
+            PokemonEstagio0 inicial = new PokemonEstagio0("Bulbasaur", 1);
+			Treinador.Pokemons_Capturados.add(inicial);
+			Treinador.time.add(inicial);
+        }else if (num == 3){
+            PokemonEstagio0 inicial = new PokemonEstagio0("Charmander", 1);
+			Treinador.Pokemons_Capturados.add(inicial);
+			Treinador.time.add(inicial);
+        }else{
+            limparTela();
+            System.out.println("Opção inválida");
+            Thread.sleep(300);
+        }
+
+
 
 	}
 
@@ -91,13 +111,13 @@ public class Main {
 		System.in.read();
 	}
 
-	private static boolean processarOpcaoMenu(Scanner scan, int opcaoMenu) {
+	private static boolean processarOpcaoMenu(Scanner scan, int opcaoMenu) throws IOException, InterruptedException {
 		switch (opcaoMenu){
 			case 1:
 				//mostrarDocumentos();
 				return true;
 			case 2:
-				//inserirDoc(scan);
+				mostrarTime();
 				return true;
 			case 3:
 				//processarDoc(scan);
@@ -109,6 +129,18 @@ public class Main {
 			default:
 			return false;	
 		}
+	}
+
+	private static void mostrarTime() throws IOException, InterruptedException {
+		limparTela();
+		System.out.println("=================================");
+		System.out.println("          Meu Time:");
+		System.out.println("=================================");
+		Treinador.mostrarTime();
+		System.out.println("=================================");
+		System.out.print(">> Pressione ENTER para voltar ao menu...");
+		System.in.read();
+
 	}
 
 	private static int lerOpcaoMenu(Scanner scan) {
