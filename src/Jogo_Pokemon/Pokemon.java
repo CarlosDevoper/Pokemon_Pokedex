@@ -45,14 +45,30 @@ public abstract class Pokemon {
         
         boolean existe;
         if(Pokemons.contains(pokemon)){
-            PokemonEstagio0 inicial = new PokemonEstagio0(pokemon);
-			Treinador.Pokemons_Capturados.add(inicial);
-			Treinador.time.add(inicial); 
             existe = true;
         }else{
             existe = false;
         }
         return existe;
+    }
+
+    public static Boolean validarCaptura(String pokemon){
+        Boolean captura;
+        Random chance = new Random();
+        ArrayList<Integer> pego = new ArrayList<>(Arrays.asList(1,1,1,0));
+        int chances = chance.nextInt(4);
+
+        if(pego.get(chances) == 1){
+            PokemonEstagio0 inicial = new PokemonEstagio0(pokemon);
+			Treinador.Pokemons_Capturados.add(inicial);
+			Treinador.time.add(inicial); 
+            captura = true;
+        } else {
+            captura = false;
+        }
+
+        return captura;
+
     }
 
 

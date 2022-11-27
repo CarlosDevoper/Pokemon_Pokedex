@@ -33,7 +33,7 @@ public class Main {
 
 			}
 
-		} while (opcaoMenu != 4);
+		} while (opcaoMenu != 5);
 		scan.close();
     }
 
@@ -78,7 +78,6 @@ public class Main {
         }
 
 
-
 	}
 
 	private static void cadastroTreinador( Scanner scan) throws IOException, InterruptedException {
@@ -116,7 +115,7 @@ public class Main {
 	private static boolean processarOpcaoMenu(Scanner scan, int opcaoMenu) throws IOException, InterruptedException {
 		switch (opcaoMenu){
 			case 1:
-				//mostrarDocumentos();
+				mostrarPerfil();
 				return true;
 			case 2:
 				mostrarTime();
@@ -133,6 +132,14 @@ public class Main {
 		}
 	}
 
+	private static void mostrarPerfil() throws IOException, InterruptedException {
+		limparTela();
+		Treinador.mostrarPerfil();
+		System.out.print(">> Pressione ENTER para voltar ao menu...");
+		System.in.read();
+	}
+
+
 	private static void capturarPokemon(Scanner scan) throws IOException, InterruptedException {
 		limparTela();
 		System.out.println("=================================");
@@ -141,11 +148,18 @@ public class Main {
 		System.out.print("    >> Nome:");
 		String nome = scan.nextLine();
 		if(Pokemon.validarPokemon(nome)){
-			System.out.println("Capturando...");
-        	Thread.sleep(3000);
-        	System.out.println("Pokemon capturado com Sucesso!");
+			if(Pokemon.validarCaptura(nome)){
+				System.out.println("    Capturando...");
+        		Thread.sleep(3000);
+        		System.out.println("    Pokemon capturado com Sucesso!");
+			} else{
+				System.out.println("    Capturando...");
+        		Thread.sleep(3000);
+        		System.out.printf("    O %s fugiu\n", nome);
+			}	
 		} else {
-			System.out.println("Pokemon não econtrado");
+			Thread.sleep(2000);
+			System.out.println("    Pokemon não econtrado");
 		}
 		System.out.println("=================================");
 		System.out.print(">> Pressione ENTER para voltar ao menu...");
