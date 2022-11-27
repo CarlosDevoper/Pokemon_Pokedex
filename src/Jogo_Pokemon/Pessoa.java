@@ -6,7 +6,7 @@ public abstract class Pessoa {
     
     protected static String nome;
     protected String genero;
-    protected int idade;
+    protected static int idade;
     
     public static ArrayList<Pessoa> Pessoas = new ArrayList<>();
 
@@ -28,12 +28,12 @@ public abstract class Pessoa {
         return genero;
     }
 
-    public int getIdade(){
+    public static int getIdade(){
         return idade;
     }
 
     public int setIdade(int idade){
-        this.idade = idade;
+        Pessoa.idade = idade;
         return idade;
     }
     

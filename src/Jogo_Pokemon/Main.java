@@ -10,16 +10,17 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws IOException, InterruptedException {
-		limparTela();
-		Scanner scan = new Scanner(System.in);
-		int opcaoMenu = 0;
 		
+		
+		limparTela();
 		apresentaçãoInicial();
 
+		Scanner scan = new Scanner(System.in);
+		int opcaoMenu = 0;
+
 		cadastroTreinador(scan);
-
 		escolhaInicial(scan);
-
+		
 		do {
 			limparTela();
 			menuPincipal();
@@ -31,7 +32,7 @@ public class Main {
 
 			}
 
-		} while (opcaoMenu != 4);
+		} while (opcaoMenu != 5);
 		scan.close();
     }
 
@@ -59,22 +60,18 @@ public class Main {
 
 		if (num == 1){
             PokemonEstagio0 inicial = new PokemonEstagio0("Squirtle", 1);
-			Treinador.Pokemons_Capturados.add(inicial);
 			Treinador.time.add(inicial);
         }else if (num == 2){
             PokemonEstagio0 inicial = new PokemonEstagio0("Bulbasaur", 1);
-			Treinador.Pokemons_Capturados.add(inicial);
 			Treinador.time.add(inicial);
         }else if (num == 3){
             PokemonEstagio0 inicial = new PokemonEstagio0("Charmander", 1);
-			Treinador.Pokemons_Capturados.add(inicial);
 			Treinador.time.add(inicial);
         }else{
             limparTela();
             System.out.println("Opção inválida");
             Thread.sleep(300);
         }
-
 
 
 	}
@@ -114,21 +111,81 @@ public class Main {
 	private static boolean processarOpcaoMenu(Scanner scan, int opcaoMenu) throws IOException, InterruptedException {
 		switch (opcaoMenu){
 			case 1:
-				//mostrarDocumentos();
+				mostrarPerfil();
 				return true;
 			case 2:
 				mostrarTime();
 				return true;
 			case 3:
-				//processarDoc(scan);
+				capturarPokemon(scan);
 				return true;
 
             case 4:
-                //sairDoPrograma();
+                mostrarPokemons();
+                return true;
+
+			case 5:
+                evoluirPokemon(scan);
                 return true;
 			default:
 			return false;	
 		}
+	}
+
+	private static void evoluirPokemon(Scanner scan) {
+	}
+
+	private static void mostrarPokemons() throws IOException, InterruptedException {
+		limparTela();
+		System.out.println("=================================");
+		System.out.println("       Pokemons Capturados:");
+		System.out.println("=================================");
+		Treinador.mostrarPokemons();
+		System.out.println("=================================");
+		System.out.print(">> Pressione ENTER para voltar ao menu...");
+		System.in.read();
+
+
+	}
+
+	private static void mostrarPerfil() throws IOException, InterruptedException {
+		limparTela();
+		Treinador.mostrarPerfil();
+		System.out.print(">> Pressione ENTER para voltar ao menu...");
+		System.in.read();
+	}
+
+
+	private static void capturarPokemon(Scanner scan) throws IOException, InterruptedException {
+		limparTela();
+		System.out.println("=================================");
+		System.out.println("    Qual Pokemon quer capturar?:");
+		System.out.println("=================================");
+		System.out.print("    >> Nome:");
+		String nome = scan.nextLine();
+		if(Pokemon.validarPokemon(nome)){
+			if(Pokemon.validarCaptura(nome)){
+				System.out.println("    Capturando...");
+        		Thread.sleep(3000);
+        		System.out.println("    Pokemon capturado com Sucesso!\n");
+				if(Treinador.time.size()>6){
+				System.out.println("Você já possui 6 pokemons em seu time");
+				System.out.println("      esse foi enviado para o pc");
+				}
+			} else{
+				System.out.println("    Capturando...");
+        		Thread.sleep(3000);
+        		System.out.printf("    O %s fugiu\n", nome);
+			}	
+		} else {
+			Thread.sleep(2000);
+			System.out.println("    Pokemon não econtrado");
+		}
+		System.out.println("=================================");
+		System.out.print(">> Pressione ENTER para voltar ao menu...");
+		System.in.read();
+
+
 	}
 
 	private static void mostrarTime() throws IOException, InterruptedException {
