@@ -123,9 +123,16 @@ public class Main {
             case 4:
                 mostrarPokemons();
                 return true;
+
+			case 5:
+                evoluirPokemon(scan);
+                return true;
 			default:
 			return false;	
 		}
+	}
+
+	private static void evoluirPokemon(Scanner scan) {
 	}
 
 	private static void mostrarPokemons() throws IOException, InterruptedException {

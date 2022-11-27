@@ -3,6 +3,10 @@ package Jogo_Pokemon;
 public class PokemonEstagio0 extends Pokemon{
     
 
+    public void evoluir(){
+        
+    }
+
     PokemonEstagio0(String nome){
         this.nome = nome;
         estagio = 0;
@@ -16,4 +20,5 @@ public class PokemonEstagio0 extends Pokemon{
         this.level = level;
         Treinador.Pokemons_Capturados.add(this);
     }
+
 }
