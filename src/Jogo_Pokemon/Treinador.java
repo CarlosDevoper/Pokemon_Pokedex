@@ -46,11 +46,12 @@ public class Treinador extends Pessoa {
 
     public static void mostrarPerfil(){
 		System.out.println("=================================");
-		System.out.println("           Perfil:");
+		System.out.println("             PERFIL:");
 		System.out.println("=================================");
-		System.out.printf("          Nome: %s", getNome());
+		System.out.printf("\n          Nome: %s", getNome());
 		System.out.printf("\n          Idade: %s", getIdade());
         System.out.printf("\n          Cidade: %s\n", "Kanto");
+        System.out.printf("\n      Pokemons Capturados: %d\n", Pokemons_Capturados.size());
 		System.out.println("=================================");
 
     }
