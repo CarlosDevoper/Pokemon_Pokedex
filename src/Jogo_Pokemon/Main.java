@@ -90,7 +90,6 @@ public class Main {
 			System.out.println("    Por favor, insira seu nome");
 		}
 		} while(nome.length()<=2);
-		
 		String genero;
 		
 		do{
