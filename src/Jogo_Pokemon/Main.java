@@ -54,9 +54,16 @@ public class Main {
         System.out.println("           3 - Charmander");
 		System.out.println("=================================");
 		
+		int num;
+		String numStr = null;
+		do{
 		System.out.print("        >> Pokemon:");
-		String numStr = scan.nextLine();
-		int num = Integer.parseInt(numStr);
+		numStr = scan.nextLine();
+		
+			System.out.println("Opção Inválida");
+
+		} while(numStr.equals(numStr != "1") ||numStr.equals(numStr != "2") || numStr.equals(numStr != "3"));
+		num = Integer.parseInt(numStr);
 
 		if (num == 1){
             PokemonEstagio0 inicial = new PokemonEstagio0("Squirtle", 1);
@@ -106,7 +113,7 @@ public class Main {
 		do{
 		System.out.print("    >> Idade:");
 		idadeSTR = scan.nextLine();
-		if (idadeSTR == null|| idadeSTR.compareTo("")==0||  idadeSTR.length()>=60){
+		if (idadeSTR == null|| idadeSTR.compareTo("")==0||  idadeSTR.length()>=60 || idadeSTR.compareTo(" ")==0){
 			System.out.println("    Idade inválida, por favor tente novamente");
 			continue;
 		}
