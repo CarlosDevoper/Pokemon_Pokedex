@@ -54,9 +54,16 @@ public class Main {
         System.out.println("           3 - Charmander");
 		System.out.println("=================================");
 		
+		int num;
+		String numStr = null;
+		do{
 		System.out.print("        >> Pokemon:");
-		String numStr = scan.nextLine();
-		int num = Integer.parseInt(numStr);
+		numStr = scan.nextLine();
+		
+			System.out.println("Opção Inválida");
+
+		} while(numStr.equals(numStr != "1") ||numStr.equals(numStr != "2") || numStr.equals(numStr != "3"));
+		num = Integer.parseInt(numStr);
 
 		if (num == 1){
             PokemonEstagio0 inicial = new PokemonEstagio0("Squirtle", 1);
@@ -81,16 +88,40 @@ public class Main {
 		System.in.read();
 		System.out.println("=================================");
 		System.out.println("\n    Como quer ser chamado?");
-		
+		String nome;
+		do{
 		System.out.print("    >> Nome:");
-		String nome = scan.nextLine();
+		nome = scan.nextLine();
 
+		if(nome == null || nome =="" || nome == " "){
+			System.out.println("    Por favor, insira seu nome");
+		}
+		} while(nome.length()<=2);
+		String genero;
+		
+		do{
 		System.out.print("    >> Gênero:");
-		String genero = scan.nextLine();
+		genero = scan.nextLine();
 
+		if(genero == null || genero =="" || genero == " "){
+			System.out.println("    Por favor, insira seu Gênero");
+		}
+		} while(genero.length()<1);
+
+		String idadeSTR;
+		Integer idade = null;
+		do{
 		System.out.print("    >> Idade:");
-		String idadeSTR = scan.nextLine();
-		int idade = Integer.parseInt(idadeSTR);
+		idadeSTR = scan.nextLine();
+		if (idadeSTR == null|| idadeSTR.compareTo("")==0||  idadeSTR.length()>=60 || idadeSTR.compareTo(" ")==0){
+			System.out.println("    Idade inválida, por favor tente novamente");
+			continue;
+		}
+		idade = Integer.parseInt(idadeSTR);
+		
+		} while(idade == null);
+
+		
 		Treinador iniciante = new Treinador(nome, genero, idade);
 		System.out.println("\n=================================");
 		Thread.sleep(1000);
