@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 public abstract class Pessoa {
     
-    protected static String nome;
+    protected String nome;
     protected String genero;
-    protected static int idade;
+    protected int idade;
     
     public static ArrayList<Pessoa> Pessoas = new ArrayList<>();
 
-    public static String getNome(){
+    public String getNome(){
         return nome;
     }
 
     public String setNome(String nome){
-        Pessoa.nome = nome;
+        this.nome = nome;
         return nome;
     }
 
@@ -28,12 +28,12 @@ public abstract class Pessoa {
         return genero;
     }
 
-    public static int getIdade(){
+    public int getIdade(){
         return idade;
     }
 
     public int setIdade(int idade){
-        Pessoa.idade = idade;
+        this.idade = idade;
         return idade;
     }
     

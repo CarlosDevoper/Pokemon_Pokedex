@@ -14,14 +14,6 @@ public class Treinador extends Pessoa {
         System.out.printf("Olá, me chamo %s tenho %d, sou um novo treinador da região de Kanto", getNome(), getIdade());
     }
 
-    // Treinador(String nome, String genero, int idade){
-    //     this.nome = setNome(nome);
-    //     this.genero = setGenero(genero);
-    //     this.idade = setIdade(idade);
-
-    //     Pessoas.add(this);
-    // }
-
     public void mostrarTime(){
         int n = time.size();
         int v = 1;

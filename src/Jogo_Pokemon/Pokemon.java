@@ -36,10 +36,6 @@ public abstract class Pokemon {
         }
     }
 
-    
-
-    
-
     public static Boolean validarPokemon(String pokemon){
         
         boolean existe;

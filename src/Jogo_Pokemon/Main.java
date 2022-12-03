@@ -184,13 +184,13 @@ public class Main {
 
 		System.out.println("\n=================================");
 		Thread.sleep(1000);
-		apresentacao();
+		apresentacao(iniciante);
 	}
 
-	private static void apresentacao() throws InterruptedException, IOException {
+	private static void apresentacao(Treinador iniciante) throws InterruptedException, IOException {
 		limparTela();
 		System.out.println("=================================");
-		System.out.printf("\n        Parabéns, %s", Pessoa.getNome());
+		System.out.printf("\n        Parabéns, %s", iniciante.getNome());
 		System.out.printf("\n     Você acaba de se tornar");
 		System.out.printf("\n      um treinador Pokemon! \n\n");
 		System.out.printf("      -- Precione ENTER -- \n");
