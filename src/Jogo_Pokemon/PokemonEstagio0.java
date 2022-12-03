@@ -17,18 +17,18 @@ public class PokemonEstagio0 extends Pokemon{
         
     }
 
-    PokemonEstagio0(String nome){
+    PokemonEstagio0(String nome, Treinador iniciante){
         this.nome = nome;
         estagio = 0;
         level = getRandomLevel();
-        Treinador.Pokemons_Capturados.add(this);
+        iniciante.Pokemons_Capturados.add(this);
     }
 
-    PokemonEstagio0(String nome, int level){
+    PokemonEstagio0(String nome, int level, Treinador iniciante){
         this.nome = nome;
         estagio = 0;
         this.level = level;
-        Treinador.Pokemons_Capturados.add(this);
+        iniciante.Pokemons_Capturados.add(this);
     }
 
 }

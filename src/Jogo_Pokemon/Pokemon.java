@@ -51,16 +51,16 @@ public abstract class Pokemon {
         return existe;
     }
 
-    public static Boolean validarCaptura(String pokemon){
+    public Boolean validarCaptura(String pokemon, Treinador iniciante){
         Boolean captura;
         Random chance = new Random();
         ArrayList<Integer> pego = new ArrayList<>(Arrays.asList(1,1,1,0));
         int chances = chance.nextInt(4);
 
         if(pego.get(chances) == 1){
-            PokemonEstagio0 inicial = new PokemonEstagio0(pokemon);
-            if(Treinador.time.size()<6){
-                Treinador.time.add(inicial);
+            PokemonEstagio0 inicial = new PokemonEstagio0(pokemon, iniciante);
+            if(iniciante.time.size()<6){
+                iniciante.time.add(inicial);
             }
             captura = true;
 

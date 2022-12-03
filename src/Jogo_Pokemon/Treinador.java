@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Treinador extends Pessoa {
     
-    public static ArrayList<Pokemon> time = new ArrayList<>();
-    public static ArrayList<Pokemon> Pokemons_Capturados = new ArrayList<>();
+    protected ArrayList<Pokemon> time = new ArrayList<>();
+    protected ArrayList<Pokemon> Pokemons_Capturados = new ArrayList<>();
     String nome;
     int idade;
 
@@ -14,15 +14,15 @@ public class Treinador extends Pessoa {
         System.out.printf("Olá, me chamo %s tenho %d, sou um novo treinador da região de Kanto", getNome(), getIdade());
     }
 
-    Treinador(String nome, String genero, int idade){
-        this.nome = setNome(nome);
-        this.genero = setGenero(genero);
-        this.idade = setIdade(idade);
+    // Treinador(String nome, String genero, int idade){
+    //     this.nome = setNome(nome);
+    //     this.genero = setGenero(genero);
+    //     this.idade = setIdade(idade);
 
-        Pessoas.add(this);
-    }
+    //     Pessoas.add(this);
+    // }
 
-    public static void mostrarTime(){
+    public void mostrarTime(){
         int n = time.size();
         int v = 1;
 
@@ -33,7 +33,7 @@ public class Treinador extends Pessoa {
         }
     }
 
-    public static void mostrarPokemons(){
+    public void mostrarPokemons(){
         int n = Pokemons_Capturados.size();
         int v = 1;
 
@@ -44,16 +44,16 @@ public class Treinador extends Pessoa {
         }
     }
 
-    public static void mostrarPokemon(int num){
+    public void mostrarPokemon(int num){
         
         
-        System.out.printf("%-7s|%-15s|%-12s\n", "ID", "Nome", "Level");
+        System.out.printf("\n    %-7s|%-15s|%-12s\n", "ID", "Nome", "Level");
        
-        System.out.printf("%06d |%-15s| %s\n",num, Pokemons_Capturados.get(num-1).nome, Pokemons_Capturados.get(num-1).level);
+        System.out.printf("    %06d |%-15s| %s\n",num, Pokemons_Capturados.get(num-1).nome, Pokemons_Capturados.get(num-1).level);
         
     }
 
-    public static void mostrarPerfil(){
+    public void mostrarPerfil(){
 		System.out.println("=================================");
 		System.out.println("             PERFIL:");
 		System.out.println("=================================");
@@ -63,5 +63,9 @@ public class Treinador extends Pessoa {
         System.out.printf("\n      Pokemons Capturados: %d\n", Pokemons_Capturados.size());
 		System.out.println("=================================");
 
+    }
+
+    public boolean validarCaptura(String nome2, Treinador iniciante) {
+        return false;
     }
 }

@@ -3,6 +3,8 @@ package Jogo_Pokemon;
 import java.io.IOException;
 import java.util.Scanner;
 
+import javax.swing.plaf.basic.BasicTreeUI.TreeIncrementAction;
+
 public class Main {
 
 
@@ -19,19 +21,19 @@ public class Main {
 		
 		limparTela();
 		apresentaçãoInicial();
-
+		Treinador iniciante = new Treinador();
 		Scanner scan = new Scanner(System.in);
 		int opcaoMenu = 0;
 
-		cadastroTreinador(scan);
-		escolhaInicial(scan);
+		cadastroTreinador(scan, iniciante);
+		escolhaInicial(scan, iniciante);
 		
 		do {
 			limparTela();
 			menuPrincipal();
 			opcaoMenu = lerOpcaoMenu(scan);
 			
-			if(!processarOpcaoMenu(scan, opcaoMenu)){
+			if(!processarOpcaoMenu(scan, opcaoMenu, iniciante)){
 				System.out.println("Opção inválida. Tente novamente");
 				Thread.sleep(2000);
 
@@ -41,7 +43,55 @@ public class Main {
 		scan.close();
     }
 
-	private static void escolhaInicial(Scanner scan) throws IOException, InterruptedException {
+	private static void menuPrincipal() {
+		System.out.println("=================================");
+		System.out.println("        O QUE DESEJA FAZER?");
+		System.out.println("=================================");
+		System.out.println("1 - Mostrar Perfil");
+		System.out.println("2 - Meu Time");
+        System.out.println("3 - Capturar Pokemon");
+		System.out.println("4 - Meus Pokemons");
+		System.out.println("5 - Evoluir Level de Pokemon");
+		System.out.println("6 - Evoluir Pokemon");
+		System.out.println("7 - Pokemons Existentes");
+		System.out.println("8 - Sair");
+		System.out.println("=================================");
+	}
+
+	private static boolean processarOpcaoMenu(Scanner scan, int opcaoMenu, Treinador iniciante) throws IOException, InterruptedException {
+		switch (opcaoMenu){
+			case 1:
+				mostrarPerfil(iniciante);
+				return true;
+			case 2:
+				mostrarTime(iniciante);
+				return true;
+			case 3:
+				capturarPokemon(scan, iniciante);
+				return true;
+
+            case 4:
+                mostrarPokemons(iniciante);
+                return true;
+
+			case 5:
+                uparLevel(scan, iniciante);
+                return true;
+			
+			case 6:
+                evoluirPokemon(scan);
+                return true;
+			
+			case 7:
+                mostrarPokedex();
+                return true;
+
+			default:
+			return false;	
+		}
+	}
+
+	private static void escolhaInicial(Scanner scan, Treinador iniciante) throws IOException, InterruptedException {
 		
 		limparTela();
 		System.in.read();
@@ -73,14 +123,14 @@ public class Main {
 		num = Integer.parseInt(numStr);
 
 		if (num == 1){
-            PokemonEstagio0 inicial = new PokemonEstagio0("Squirtle", 1);
-			Treinador.time.add(inicial);
+            PokemonEstagio0 inicial = new PokemonEstagio0("Squirtle", 1, iniciante);
+			iniciante.time.add(inicial);
         }else if (num == 2){
-            PokemonEstagio0 inicial = new PokemonEstagio0("Bulbasaur", 1);
-			Treinador.time.add(inicial);
+            PokemonEstagio0 inicial = new PokemonEstagio0("Bulbasaur", 1, iniciante);
+			iniciante.time.add(inicial);
         }else if (num == 3){
-            PokemonEstagio0 inicial = new PokemonEstagio0("Charmander", 1);
-			Treinador.time.add(inicial);
+            PokemonEstagio0 inicial = new PokemonEstagio0("Charmander", 1, iniciante);
+			iniciante.time.add(inicial);
         }else{
             limparTela();
             System.out.println("Opção inválida");
@@ -88,7 +138,7 @@ public class Main {
         }
 	}
 
-	private static void cadastroTreinador( Scanner scan) throws IOException, InterruptedException {
+	private static void cadastroTreinador( Scanner scan, Treinador iniciante) throws IOException, InterruptedException {
 		limparTela();
 		System.in.read();
 		System.out.println("=================================");
@@ -127,7 +177,11 @@ public class Main {
 		} while(idade == null);
 
 		
-		Treinador iniciante = new Treinador(nome, genero, idade);
+		//Treinador iniciante = new Treinador(nome, genero, idade);
+		iniciante.setNome(nome);
+		iniciante.setIdade(idade);
+		iniciante.setGenero(genero);
+
 		System.out.println("\n=================================");
 		Thread.sleep(1000);
 		apresentacao();
@@ -144,40 +198,8 @@ public class Main {
 		System.in.read();
 	}
 
-	private static boolean processarOpcaoMenu(Scanner scan, int opcaoMenu) throws IOException, InterruptedException {
-		switch (opcaoMenu){
-			case 1:
-				mostrarPerfil();
-				return true;
-			case 2:
-				mostrarTime();
-				return true;
-			case 3:
-				capturarPokemon(scan);
-				return true;
 
-            case 4:
-                mostrarPokemons();
-                return true;
-
-			case 5:
-                uparLevel(scan);
-                return true;
-			
-			case 6:
-                evoluirPokemon(scan);
-                return true;
-			
-			case 7:
-                mostrarPokedex();
-                return true;
-
-			default:
-			return false;	
-		}
-	}
-
-	private static void uparLevel(Scanner scan) throws IOException, InterruptedException {
+	private static void uparLevel(Scanner scan, Treinador iniciante) throws IOException, InterruptedException {
 		limparTela();
 		System.out.println("=================================");
 		System.out.println("      Escolha o Pokemon:");
@@ -198,23 +220,35 @@ public class Main {
 
 		
 		System.out.println("\n       Pokemon Escolhido:");
-		Treinador.mostrarPokemon(ID);
+		iniciante.mostrarPokemon(ID);
 		
 		System.out.println("\n Quantos Levels quer subir?");
 		String LevelStr;
 		Integer Level = null;
 		do{
 		System.out.print("    >> Level(s):");
+		
 		LevelStr = scan.nextLine();
+		
 		if (LevelStr == null|| LevelStr.compareTo("")==0||  LevelStr.length()>=60 || LevelStr.compareTo(" ")==0){
 			System.out.println("    Opção inválida, por favor tente novamente");
 			continue;
 		}
+
 		Level = Integer.parseInt(LevelStr);
-		
+		limparTela();
+		if(Level>1){
+			System.out.printf("\n Seu %s vai está evoluindo %s leveis\n", iniciante.Pokemons_Capturados.get(ID-1).getNome(), LevelStr);
+			Thread.sleep(2000);
+		} else{
+			System.out.printf("\nSeu %s está evoluindo %s level\n", iniciante.Pokemons_Capturados.get(ID-1).getNome(), LevelStr);
+			Thread.sleep(2000);
+		}
+
+
 		} while(ID == null);
-		Treinador.Pokemons_Capturados.get(ID-1).setLevel(Level);
-		Treinador.mostrarPokemon(ID);
+		iniciante.Pokemons_Capturados.get(ID-1).setLevel(Level);
+		iniciante.mostrarPokemon(ID);
 		voltarMenu();
 
 	}
@@ -232,26 +266,24 @@ public class Main {
 	private static void evoluirPokemon(Scanner scan) {
 	}
 
-	private static void mostrarPokemons() throws IOException, InterruptedException {
+	private static void mostrarPokemons(Treinador iniciante) throws IOException, InterruptedException {
 		limparTela();
 		System.out.println("=================================");
 		System.out.println("       Pokemons Capturados:");
 		System.out.println("=================================");
-		Treinador.mostrarPokemons();
+		iniciante.mostrarPokemons();
 		System.out.println("=================================");
 		voltarMenu();
-
-
 	}
 
-	private static void mostrarPerfil() throws IOException, InterruptedException {
+	private static void mostrarPerfil(Treinador iniciante) throws IOException, InterruptedException {
 		limparTela();
-		Treinador.mostrarPerfil();
+		iniciante.mostrarPerfil();
 		voltarMenu();
 	}
 
 
-	private static void capturarPokemon(Scanner scan) throws IOException, InterruptedException {
+	private static void capturarPokemon(Scanner scan, Treinador iniciante) throws IOException, InterruptedException {
 		limparTela();
 		System.out.println("=================================");
 		System.out.println("    Qual Pokemon quer capturar?:");
@@ -259,11 +291,11 @@ public class Main {
 		System.out.print("    >> Nome:");
 		String nome = scan.nextLine();
 		if(Pokemon.validarPokemon(nome)){
-			if(Pokemon.validarCaptura(nome)){
+			if(iniciante.validarCaptura(nome, iniciante)){
 				System.out.println("    Capturando...");
         		Thread.sleep(3000);
         		System.out.println("    Pokemon capturado com Sucesso!\n");
-				if(Treinador.time.size()>6){
+				if(iniciante.time.size()>6){
 				System.out.println("Você já possui 6 pokemons em seu time");
 				System.out.println("      esse foi enviado para o pc");
 				}
@@ -282,12 +314,12 @@ public class Main {
 
 	}
 
-	private static void mostrarTime() throws IOException, InterruptedException {
+	private static void mostrarTime(Treinador iniciante) throws IOException, InterruptedException {
 		limparTela();
 		System.out.println("=================================");
 		System.out.println("          Meu Time:");
 		System.out.println("=================================");
-		Treinador.mostrarTime();
+		iniciante.mostrarTime();
 		System.out.println("=================================");
 		voltarMenu();
 
@@ -298,21 +330,6 @@ public class Main {
 		int opcaoEscolhida = scan.nextInt();
 		scan.nextLine();
 		return opcaoEscolhida;
-	}
-
-	private static void menuPrincipal() {
-		System.out.println("=================================");
-		System.out.println("        O QUE DESEJA FAZER?");
-		System.out.println("=================================");
-		System.out.println("1 - Mostrar Perfil");
-		System.out.println("2 - Meu Time");
-        System.out.println("3 - Capturar Pokemon");
-		System.out.println("4 - Meus Pokemons");
-		System.out.println("5 - Evoluir Level de Pokemon");
-		System.out.println("6 - Evoluir Pokemon");
-		System.out.println("7 - Pokemons Existentes");
-		System.out.println("8 - Sair");
-		System.out.println("=================================");
 	}
 
 	private static void apresentaçãoInicial() throws InterruptedException, IOException {
