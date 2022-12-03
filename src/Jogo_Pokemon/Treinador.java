@@ -2,6 +2,8 @@ package Jogo_Pokemon;
 
 import java.util.ArrayList;
 
+import javax.swing.JSpinner.NumberEditor;
+
 public class Treinador extends Pessoa {
     
     public static ArrayList<Pokemon> time = new ArrayList<>();
@@ -42,6 +44,15 @@ public class Treinador extends Pessoa {
             System.out.printf("%06d |%-15s| %s\n",v, Pokemons_Capturados.get(i).nome, Pokemons_Capturados.get(i).level);
             v++;
         }
+    }
+
+    public static void mostrarPokemon(int num){
+        
+        
+        System.out.printf("%-7s|%-15s|%-12s\n", "ID", "Nome", "Level");
+       
+        System.out.printf("%06d |%-15s| %s\n",num, Pokemons_Capturados.get(num-1).nome, Pokemons_Capturados.get(num-1).level);
+        
     }
 
     public static void mostrarPerfil(){

@@ -25,26 +25,20 @@ public abstract class Pokemon {
     "Tauros", "Magikarp", "Gyarados", "Lapras", "Ditto", "Eevee", "Vaporeon", "Jolteon", "Flareon", "Porygon", "Omanyte", "Omastar",
     "Kabuto", "Kabutops", "Aerodactyl", "Snorlax", "Articuno", "Zapdos", "Moltres", "Dratini", "Dragonair", "Dragonite", "Mewtwo", "Mew"));
      
-    public static ArrayList<String> PokemonsEstagio0 = new ArrayList<>(Arrays.asList("Bulbasaur", "Charmander", "Squirtle", "Caterpie", "Weedle",
-    "Pidgey", "Rattata",  "Spearow", "Ekans", null, "Sandshrew", "Nidoran", "Nidoran♂", "Clefairy", "Vulpix", "Jigglypuff", "Zubat", "Oddish",
-    "Paras","Venonat", "Diglett", "Meowth", "Psyduck", "Mankey", "Growlithe", "Poliwag", "Abra", "Machop", "Bellsprout", "Tentacool", "Geodude",
-    "Ponyta", "Slowpoke", "Magnemite", "Farfetchd", "Doduo", "Seel", "Grimer", "Shellder", "Gastly", "Onix", "Drowzee", "Krabby", "Voltorb", "Exeggcute",
-    "Cubone", "Hitmonlee", "Lickitung", "Koffing", "Rhyhorn", "Chansey", "Tangela", "Kangaskhan", "Horsea", "Goldeen", "Staryu", "Mr. Mime", "Scyther",
-    "Jynx", "Electabuzz", "Magmar", "Pinsir","Tauros", "Magikarp", "Lapras", "Ditto", "Eevee", "Porygon", "Omanyte", "Kabuto", "Aerodactyl", "Snorlax",
-    "Articuno", "Zapdos", "Moltres", "Dratini", "Mewtwo", "Mew"));
+    public static void Pokedex(){
+        int n = Pokemons.size();
+        int v = 1;
 
-    public static ArrayList<String> PokemonsEstagio1 = new ArrayList<>(Arrays.asList("Ivysaur", "Charmeleon", "Wartortle", "Metapod", "Kakuna",
-    "Pidgeotto", "Raticate", "Fearow", "Arbok", "Pikachu", "Sandslash", "Nidorina", "Nidorino", "Clefable", "Ninetales", "Wigglytuff", "Golbat", "Gloom",
-    "Parasect", "Venomoth", "Dugtrio", "Persian", "Golduck", "Primeape","Arcanine", "Poliwhirl", "Kadabra", "Machoke", "Weepinbell", "Tentacruel", "Graveler",
-    "Rapidash", "Slowbro", "Magneton", null, "Dodrio", "Dewgong", "Muk", "Cloyster", "Haunter", null, "Hypno", "Kingler", "Electrode", "Exeggutor","Marowak",
-    "Hitmonchan", null, "Weezing", "Rhydon", null, null, null, "Seadra", "Seaking", "Starmie", null, null, null, null, null, null, null, "Gyarados", null,
-    null, null, null, "Omastar", "Kabutops", null, null, null, null, null,  "Dragonair", null, null));
+        System.out.printf("%-7s|%-15s\n", "ID", "Nome");
+        for(int i = 0; i<n; i++ ){
+            System.out.printf("%06d |%-15s\n",v, Pokemons.get(i));
+            v++;
+        }
+    }
 
-    public static ArrayList<String> PokemonsEstagio2 = new ArrayList<>(Arrays.asList("Venusaur", "Charizard", "Blastoise", "Butterfree", "Beedrill",
-    "Pidgeot", null, null, null, "Raichu", null, "Nidoqueen", "Nidoking", null, null, null, null, "Vileplume", null, null, null, null, null, null, null,
-    "Poliwrath", "Alakazam", "Machamp", "Victreebel", null, "Golem", null, null, null, null, null, null, null, null, "Gengar", null, null, null, null,
-    null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-    null, null, null, null, null, null,  "Dragonite", null, null));
+    
+
+    
 
     public static Boolean validarPokemon(String pokemon){
         
@@ -103,7 +97,7 @@ public abstract class Pokemon {
     }
 
     public int setLevel(int level){
-        this.level = level;
+        this.level += level;
         return level;
     }
 

@@ -23,7 +23,7 @@ public class Main {
 		
 		do {
 			limparTela();
-			menuPincipal();
+			menuPrincipal();
 			opcaoMenu = lerOpcaoMenu(scan);
 			
 			if(!processarOpcaoMenu(scan, opcaoMenu)){
@@ -32,7 +32,7 @@ public class Main {
 
 			}
 
-		} while (opcaoMenu != 5);
+		} while (opcaoMenu != 8);
 		scan.close();
     }
 
@@ -156,11 +156,74 @@ public class Main {
                 return true;
 
 			case 5:
+                uparLevel(scan);
+                return true;
+			
+			case 6:
                 evoluirPokemon(scan);
                 return true;
+			
+			case 7:
+                mostrarPokedex();
+                return true;
+
 			default:
 			return false;	
 		}
+	}
+
+	private static void uparLevel(Scanner scan) throws IOException, InterruptedException {
+		limparTela();
+		System.out.println("=================================");
+		System.out.println("      Escolha o Pokemon:");
+		System.out.println("=================================");
+		
+		String IDSTR;
+		Integer ID = null;
+		do{
+		System.out.print("    >> ID:");
+		IDSTR = scan.nextLine();
+		if (IDSTR == null|| IDSTR.compareTo("")==0||  IDSTR.length()>=60 || IDSTR.compareTo(" ")==0){
+			System.out.println("    Opção inválida, por favor tente novamente");
+			continue;
+		}
+		ID = Integer.parseInt(IDSTR);
+		
+		} while(ID == null);
+
+		
+		System.out.println("\n       Pokemon Escolhido:");
+		Treinador.mostrarPokemon(ID);
+		
+		System.out.println("\n Quantos Levels quer subir?");
+		String LevelStr;
+		Integer Level = null;
+		do{
+		System.out.print("    >> Level(s):");
+		LevelStr = scan.nextLine();
+		if (LevelStr == null|| LevelStr.compareTo("")==0||  LevelStr.length()>=60 || LevelStr.compareTo(" ")==0){
+			System.out.println("    Opção inválida, por favor tente novamente");
+			continue;
+		}
+		Level = Integer.parseInt(LevelStr);
+		
+		} while(ID == null);
+		Treinador.Pokemons_Capturados.get(ID-1).setLevel(Level);
+		Treinador.mostrarPokemon(ID);
+		System.out.print(">> Pressione ENTER para voltar ao menu...");
+		System.in.read();
+
+	}
+
+	private static void mostrarPokedex() throws IOException, InterruptedException {
+		limparTela();
+		System.out.println("=================================");
+		System.out.println("            Pokemons:");
+		System.out.println("=================================");
+		Pokemon.Pokedex();
+		System.out.println("=================================");
+		System.out.print(">> Pressione ENTER para voltar ao menu...");
+		System.in.read();
 	}
 
 	private static void evoluirPokemon(Scanner scan) {
@@ -238,7 +301,7 @@ public class Main {
 		return opcaoEscolhida;
 	}
 
-	private static void menuPincipal() {
+	private static void menuPrincipal() {
 		System.out.println("=================================");
 		System.out.println("        O QUE DESEJA FAZER?");
 		System.out.println("=================================");
@@ -246,7 +309,10 @@ public class Main {
 		System.out.println("2 - Meu Time");
         System.out.println("3 - Capturar Pokemon");
 		System.out.println("4 - Meus Pokemons");
-		System.out.println("5 - Evoluir Pokemon");
+		System.out.println("5 - Evoluir Level de Pokemon");
+		System.out.println("6 - Evoluir Pokemon");
+		System.out.println("7 - Pokemons Existentes");
+		System.out.println("8 - Sair");
 		System.out.println("=================================");
 	}
 
