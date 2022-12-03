@@ -5,12 +5,17 @@ import java.util.Scanner;
 
 public class Main {
 
+
+	public static void voltarMenu() throws IOException{
+		System.out.print(">> Pressione ENTER para voltar ao menu...");
+		System.in.read();
+	}
+
 	public static void limparTela() throws IOException, InterruptedException {
 		new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 	}
 
 	public static void main(String[] args) throws IOException, InterruptedException {
-		
 		
 		limparTela();
 		apresentaçãoInicial();
@@ -37,6 +42,7 @@ public class Main {
     }
 
 	private static void escolhaInicial(Scanner scan) throws IOException, InterruptedException {
+		
 		limparTela();
 		System.in.read();
 		System.out.println("=================================");
@@ -63,6 +69,7 @@ public class Main {
 			System.out.println("Opção Inválida");
 
 		} while(numStr.equals(numStr != "1") ||numStr.equals(numStr != "2") || numStr.equals(numStr != "3"));
+		
 		num = Integer.parseInt(numStr);
 
 		if (num == 1){
@@ -79,8 +86,6 @@ public class Main {
             System.out.println("Opção inválida");
             Thread.sleep(300);
         }
-
-
 	}
 
 	private static void cadastroTreinador( Scanner scan) throws IOException, InterruptedException {
@@ -210,8 +215,7 @@ public class Main {
 		} while(ID == null);
 		Treinador.Pokemons_Capturados.get(ID-1).setLevel(Level);
 		Treinador.mostrarPokemon(ID);
-		System.out.print(">> Pressione ENTER para voltar ao menu...");
-		System.in.read();
+		voltarMenu();
 
 	}
 
@@ -222,8 +226,7 @@ public class Main {
 		System.out.println("=================================");
 		Pokemon.Pokedex();
 		System.out.println("=================================");
-		System.out.print(">> Pressione ENTER para voltar ao menu...");
-		System.in.read();
+		voltarMenu();
 	}
 
 	private static void evoluirPokemon(Scanner scan) {
@@ -236,8 +239,7 @@ public class Main {
 		System.out.println("=================================");
 		Treinador.mostrarPokemons();
 		System.out.println("=================================");
-		System.out.print(">> Pressione ENTER para voltar ao menu...");
-		System.in.read();
+		voltarMenu();
 
 
 	}
@@ -245,8 +247,7 @@ public class Main {
 	private static void mostrarPerfil() throws IOException, InterruptedException {
 		limparTela();
 		Treinador.mostrarPerfil();
-		System.out.print(">> Pressione ENTER para voltar ao menu...");
-		System.in.read();
+		voltarMenu();
 	}
 
 
@@ -276,8 +277,7 @@ public class Main {
 			System.out.println("    Pokemon não econtrado");
 		}
 		System.out.println("=================================");
-		System.out.print(">> Pressione ENTER para voltar ao menu...");
-		System.in.read();
+		voltarMenu();
 
 
 	}
@@ -289,8 +289,7 @@ public class Main {
 		System.out.println("=================================");
 		Treinador.mostrarTime();
 		System.out.println("=================================");
-		System.out.print(">> Pressione ENTER para voltar ao menu...");
-		System.in.read();
+		voltarMenu();
 
 	}
 

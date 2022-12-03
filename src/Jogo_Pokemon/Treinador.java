@@ -2,8 +2,6 @@ package Jogo_Pokemon;
 
 import java.util.ArrayList;
 
-import javax.swing.JSpinner.NumberEditor;
-
 public class Treinador extends Pessoa {
     
     public static ArrayList<Pokemon> time = new ArrayList<>();
