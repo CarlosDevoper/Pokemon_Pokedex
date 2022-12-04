@@ -4,16 +4,22 @@ import java.util.ArrayList;
 
 public class Treinador extends Pessoa {
     
+    /*Arryas de objetos Pokemon onde são armazenados os pokemnos que fazem
+    parte do time do treinador
+    */
     protected ArrayList<Pokemon> time = new ArrayList<>();
+    
+    /*Arryas de objetos Pokemon onde são armazenados todos os pokemons
+    capturados pelo treinador
+    */
     protected ArrayList<Pokemon> Pokemons_Capturados = new ArrayList<>();
+
     String nome;
     int idade;
 
-    @Override
-    public void apresentacao(){
-        System.out.printf("Olá, me chamo %s tenho %d, sou um novo treinador da região de Kanto", getNome(), getIdade());
-    }
-
+    /* Método que mostra os pokemons que fazem parte do time
+    do treinador, percorrendo o array referente ao time
+    */
     public void mostrarTime(){
         int n = time.size();
         int v = 1;
@@ -25,6 +31,9 @@ public class Treinador extends Pessoa {
         }
     }
 
+    /* Método que mostra todos os pokemons que o treinador
+    capturou, percorrendo o array referente aos pokemons capturados
+    */
     public void mostrarPokemons(){
         int n = Pokemons_Capturados.size();
         int v = 1;
@@ -36,15 +45,19 @@ public class Treinador extends Pessoa {
         }
     }
 
+    /* Método que mostra os dados de um pokemon, ID, Nome e Level
+    passando como parâmetro o ID do pokemon escolhido
+    */
     public void mostrarPokemon(int num){
         
-        
-        System.out.printf("\n    %-7s|%-15s|%-12s\n", "ID", "Nome", "Level");
-       
+        System.out.printf("\n    %-7s|%-15s|%-12s\n", "ID", "Nome", "Level"); 
         System.out.printf("    %06d |%-15s| %s\n",num, Pokemons_Capturados.get(num-1).nome, Pokemons_Capturados.get(num-1).level);
         
     }
 
+    /* Método que mostra o perfil do Treinador, mostrando os dados
+    básicos e a quantidade de pokemons que ele ja capturou
+    */
     public void mostrarPerfil(){
 		System.out.println("=================================");
 		System.out.println("             PERFIL:");
@@ -54,6 +67,6 @@ public class Treinador extends Pessoa {
         System.out.printf("\n          Cidade: %s\n", "Kanto");
         System.out.printf("\n      Pokemons Capturados: %d\n", Pokemons_Capturados.size());
 		System.out.println("=================================");
-
     }
+    
 }

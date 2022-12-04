@@ -6,6 +6,11 @@ import java.util.Arrays;
 
 public class PokemonEstagio1 extends Pokemon {
     
+    /* Array de objetos que guarda todos os pokemons da 1ª geração
+    que possuem um primeiro estágio de evolução, array está organizado
+    na forma que os pokemons aparecem na pokedex, caso seja null, significa
+    que o pokemon de estágio anterior, não possui um estágio 1
+    */
     public static ArrayList<String> PokemonsEstagio1 = new ArrayList<>(Arrays.asList("Ivysaur", "Charmeleon", "Wartortle", "Metapod", "Kakuna",
     "Pidgeotto", "Raticate", "Fearow", "Arbok", "Pikachu", "Sandslash", "Nidorina", "Nidorino", "Clefable", "Ninetales", "Wigglytuff", "Golbat", "Gloom",
     "Parasect", "Venomoth", "Dugtrio", "Persian", "Golduck", "Primeape","Arcanine", "Poliwhirl", "Kadabra", "Machoke", "Weepinbell", "Tentacruel", "Graveler",
@@ -13,7 +18,10 @@ public class PokemonEstagio1 extends Pokemon {
     "Hitmonchan", null, "Weezing", "Rhydon", null, null, null, "Seadra", "Seaking", "Starmie", null, null, null, null, null, null, null, "Gyarados", null,
     null, null, null, "Omastar", "Kabutops", null, null, null, null, null,  "Dragonair", null, null));
 
-
+    /* Método que verifica se o pokemon passado como parâmetro,
+    possui uma evolução estágio 1, ou seja, se ele está presente
+    no array de PokemonsEstagio1
+    */
     public static Boolean validarPokemon(String pokemon){
         
         boolean existe;
@@ -24,7 +32,11 @@ public class PokemonEstagio1 extends Pokemon {
         }
         return existe;
     }
-    
+
+
+    /* Reescrita do método evoluir da classe mãe de pokemon, como
+    forma de polimorfismo, cada estágio tem uma forma de evoluir
+    */
     @Override
     public void evoluir(Pokemon pokemon, int ID, Treinador iniciante) throws InterruptedException, IOException{
         
@@ -44,6 +56,7 @@ public class PokemonEstagio1 extends Pokemon {
         }
     }
 
+    // Construtor utilizado quando se captura um pokemon estagio 1
     PokemonEstagio1(String nome, Treinador iniciante){
         this.nome = nome;
         estagio = 1;
@@ -51,6 +64,7 @@ public class PokemonEstagio1 extends Pokemon {
         iniciante.Pokemons_Capturados.add(this);
     }
 
+    // Construtor utilizado na evolução de um pokemon estagio 0 para o estagio 1
     PokemonEstagio1(String nome, Treinador iniciante, int level){
         this.nome = nome;
         estagio = 1;
