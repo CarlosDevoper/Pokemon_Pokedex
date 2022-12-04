@@ -3,9 +3,33 @@ package Jogo_Pokemon;
 import java.io.IOException;
 import java.util.Scanner;
 
-import javax.swing.plaf.basic.BasicTreeUI.TreeIncrementAction;
-
 public class Main {
+
+	
+	public static Boolean validarString(String s){
+		boolean validade = false;
+		if(s.trim().isEmpty()){
+			validade = true;
+		}else{
+			validade= false;
+		}
+		return validade;
+	}
+
+	public static Boolean validarInteiro(String s){
+		
+		char[] c = s.toCharArray();
+		boolean d = true;
+
+		for ( int i = 0; i < c.length; i++ )
+   			// verifica se o char não é um dígito
+    		if ( !Character.isDigit( c[ i ] ) ) {
+        		d = false;
+        	break;
+    	}
+		return d;
+}
+
 
 
 	public static void voltarMenu() throws IOException{
@@ -139,42 +163,48 @@ public class Main {
 	}
 
 	private static void cadastroTreinador( Scanner scan, Treinador iniciante) throws IOException, InterruptedException {
+		
 		limparTela();
 		System.in.read();
 		System.out.println("=================================");
 		System.out.println("\n    Como quer ser chamado?");
+		
 		String nome;
 		do{
 		System.out.print("    >> Nome:");
 		nome = scan.nextLine();
 
-		if(nome == null || nome =="" || nome == " "){
+		if(validarString(nome)){
 			System.out.println("    Por favor, insira seu nome");
 		}
+	
 		} while(nome.length()<=2);
+
 		String genero;
-		
 		do{
 		System.out.print("    >> Gênero:");
 		genero = scan.nextLine();
 
-		if(genero == null || genero =="" || genero == " "){
+		if(validarString(genero)){
 			System.out.println("    Por favor, insira seu Gênero");
 		}
 		} while(genero.length()<1);
 
 		String idadeSTR;
-		Integer idade = null;
+		Integer idade = 0;
 		do{
 		System.out.print("    >> Idade:");
 		idadeSTR = scan.nextLine();
-		if (idadeSTR == null|| idadeSTR.compareTo("")==0||  idadeSTR.length()>=60 || idadeSTR.compareTo(" ")==0){
-			System.out.println("    Idade inválida, por favor tente novamente");
-			continue;
-		}
-		idade = Integer.parseInt(idadeSTR);
 		
-		} while(idade == null);
+		if(validarString(idadeSTR)){
+			System.out.println("    Idade inválida, por favor tente novamente");
+		} else if(validarInteiro(idadeSTR)){
+			idade = Integer.parseInt(idadeSTR);
+		} else {
+			System.out.println("    Idade inválida, por favor tente novamente");
+		}
+	
+		} while(idade<=0);
 
 		
 		//Treinador iniciante = new Treinador(nome, genero, idade);
