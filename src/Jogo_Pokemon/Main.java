@@ -109,6 +109,10 @@ public class Main {
 			case 7:
                 mostrarPokedex();
                 return true;
+				
+			case 8:
+                mostrarPokedex();
+                return true;
 
 			default:
 			return false;	
@@ -240,17 +244,20 @@ public class Main {
 		System.out.println("=================================");
 		
 		String IDSTR;
-		Integer ID = null;
+		int ID = 0;
 		do{
 		System.out.print("    >> ID:");
 		IDSTR = scan.nextLine();
-		if (IDSTR == null|| IDSTR.compareTo("")==0||  IDSTR.length()>=60 || IDSTR.compareTo(" ")==0){
-			System.out.println("    Opção inválida, por favor tente novamente");
-			continue;
-		}
-		ID = Integer.parseInt(IDSTR);
 		
-		} while(ID == null);
+		if(validarString(IDSTR)){
+			System.out.println("    Opção inválida, por favor tente novamente");
+		} else if(validarInteiro(IDSTR)){
+			ID = Integer.parseInt(IDSTR);
+		} else{
+			System.out.println("    Opção inválida, por favor tente novamente");
+		}
+		
+		} while(ID<=0);
 
 		
 		System.out.println("\n       Pokemon Escolhido:");
@@ -258,32 +265,33 @@ public class Main {
 		
 		System.out.println("\n Quantos Levels quer subir?");
 		String LevelStr;
-		Integer Level = null;
+		int Level = 0;
+		
 		do{
 		System.out.print("    >> Level(s):");
-		
 		LevelStr = scan.nextLine();
-		
-		if (LevelStr == null|| LevelStr.compareTo("")==0||  LevelStr.length()>=60 || LevelStr.compareTo(" ")==0){
+
+		if(validarString(LevelStr)){
 			System.out.println("    Opção inválida, por favor tente novamente");
-			continue;
-		}
-
-		Level = Integer.parseInt(LevelStr);
-		limparTela();
-		if(Level>1){
-			System.out.printf("\n Seu %s vai está evoluindo %s leveis\n", iniciante.Pokemons_Capturados.get(ID-1).getNome(), LevelStr);
-			Thread.sleep(2000);
+		} else if(validarInteiro(LevelStr)){
+			Level = Integer.parseInt(LevelStr);
+			limparTela();
+			if(Level>1){
+				System.out.printf("\n Seu %s vai está evoluindo %s leveis\n", iniciante.Pokemons_Capturados.get(ID-1).getNome(), LevelStr);
+				Thread.sleep(2000);
+				
+			} else{
+				System.out.printf("\nSeu %s está evoluindo %s level\n", iniciante.Pokemons_Capturados.get(ID-1).getNome(), LevelStr);
+				Thread.sleep(2000);
+			}
+			iniciante.Pokemons_Capturados.get(ID-1).setLevel(Level);
+		    iniciante.mostrarPokemon(ID);
+			voltarMenu();
 		} else{
-			System.out.printf("\nSeu %s está evoluindo %s level\n", iniciante.Pokemons_Capturados.get(ID-1).getNome(), LevelStr);
-			Thread.sleep(2000);
+			System.out.println("    Opção inválida, por favor tente novamente");
 		}
+		} while(Level==0);
 
-
-		} while(ID == null);
-		iniciante.Pokemons_Capturados.get(ID-1).setLevel(Level);
-		iniciante.mostrarPokemon(ID);
-		voltarMenu();
 
 	}
 
@@ -384,7 +392,7 @@ public class Main {
 		limparTela();
 
 		System.out.println("=================================");
-		System.out.printf("\n      Pornto para começar? \n");
+		System.out.printf("\n      Pronto para começar? \n");
 		System.out.printf("\n      -- Precione ENTER -- \n\n");
 		System.out.println("=================================");
 		System.in.read();
