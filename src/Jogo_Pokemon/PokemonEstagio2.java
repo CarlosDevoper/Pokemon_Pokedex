@@ -24,15 +24,25 @@ public class PokemonEstagio2 extends Pokemon {
     }
 
     @Override
-    public void evoluir(Pokemon pokemon){
-        System.out.printf("Seu %s não pode evoluir\n", pokemon.getNome());
+    public void evoluir(Pokemon pokemon, int ID, Treinador iniciante){
+        System.out.printf("     Seu %s não pode evoluir\n", pokemon.getNome());
     } 
     
     PokemonEstagio2(String nome, Treinador iniciante){
         this.nome = nome;
-        estagio = 2;
+        estagio = 1;
         level = getRandomLevel();
         iniciante.Pokemons_Capturados.add(this);
+    }
+
+    PokemonEstagio2(String nome, Treinador iniciante, int level){
+        this.nome = nome;
+        estagio = 2;
+        this.level = level;
+        iniciante.Pokemons_Capturados.add(this);
+        if(iniciante.time.size()<6){
+            iniciante.time.add(this);
+        }
     }
 
 }

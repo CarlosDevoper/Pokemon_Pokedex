@@ -111,12 +111,19 @@ public class Main {
                 return true;
 				
 			case 8:
-                mostrarPokedex();
+                sairPrograma();
                 return true;
 
 			default:
 			return false;	
 		}
+	}
+
+	private static void sairPrograma() throws InterruptedException, IOException {
+		limparTela();
+		System.out.println("Saindo do Jogo...");
+		Thread.sleep(2000);
+		
 	}
 
 	private static void escolhaInicial(Scanner scan, Treinador iniciante) throws IOException, InterruptedException {
@@ -337,7 +344,8 @@ public class Main {
 			System.out.println("    Opção inválida, por favor tente novamente");
 		}
 		} while(ID<=0);
-		iniciante.Pokemons_Capturados.get(ID-1).evoluir(iniciante.Pokemons_Capturados.get(ID-1));
+		limparTela();
+		iniciante.Pokemons_Capturados.get(ID-1).evoluir(iniciante.Pokemons_Capturados.get(ID-1), ID-1, iniciante);
 		voltarMenu();
 
 	}
@@ -366,6 +374,9 @@ public class Main {
 		System.out.println("=================================");
 		System.out.print("    >> Nome:");
 		String nome = scan.nextLine();
+		nome = nome.toLowerCase();
+		nome = nome.substring(0,1).toUpperCase().concat(nome.substring(1));
+
 		if(Pokemon.validarPokemon(nome)){
 			if(Pokemon.validarCaptura(nome, iniciante)){
 				System.out.println("    Capturando...");

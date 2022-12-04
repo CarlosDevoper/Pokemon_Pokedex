@@ -1,5 +1,6 @@
 package Jogo_Pokemon;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -37,7 +38,7 @@ public abstract class Pokemon {
     }
 
 
-    public void evoluir(Pokemon pokemon){
+    public void evoluir(Pokemon pokemon, int ID, Treinador iniciante) throws InterruptedException, IOException{
         System.out.printf("Pokemon %s está evoluindo\n", pokemon.getNome());
     }
     public static Boolean validarPokemon(String pokemon){

@@ -1,5 +1,6 @@
 package Jogo_Pokemon;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -26,8 +27,22 @@ public class PokemonEstagio0 extends Pokemon{
     }
 
     @Override
-    public void evoluir(Pokemon pokemon){
-        System.out.printf("Pokemon %s está evoluindo para o estágio 1", pokemon.getNome());
+    public void evoluir(Pokemon pokemon, int ID, Treinador iniciante) throws InterruptedException, IOException{
+        
+        int n = PokemonsEstagio0.indexOf(pokemon.getNome());
+        if(PokemonEstagio1.PokemonsEstagio1.get(n)== null){
+            System.out.printf("    Seu %s não pode evoluir\n\n", pokemon.getNome());
+        }else{
+            
+            System.out.printf("  Seu %s está evoluindo para %s..\n\n", pokemon.getNome(), PokemonEstagio1.PokemonsEstagio1.get(n));
+            Thread.sleep(3000);
+            System.out.println("         Pokemon evoluído com sucesso!\n");
+
+            PokemonEstagio1 pokemonEvoluido = new PokemonEstagio1(PokemonEstagio1.PokemonsEstagio1.get(n), iniciante, pokemon.getLeve());
+            iniciante.Pokemons_Capturados.remove(pokemon);
+            iniciante.time.remove(pokemon);
+            pokemon = null;
+        }
     }
 
     PokemonEstagio0(String nome, Treinador iniciante){
