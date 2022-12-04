@@ -134,32 +134,38 @@ public class Main {
         System.out.println("           3 - Charmander");
 		System.out.println("=================================");
 		
-		int num;
-		String numStr = null;
+		int num = 0;
+		String numStr;
 		do{
 		System.out.print("        >> Pokemon:");
 		numStr = scan.nextLine();
 		
-			System.out.println("Opção Inválida");
+		if(validarString(numStr)){
+			System.out.println("        Opção Inválida");
 
-		} while(numStr.equals(numStr != "1") ||numStr.equals(numStr != "2") || numStr.equals(numStr != "3"));
-		
-		num = Integer.parseInt(numStr);
-
-		if (num == 1){
-            PokemonEstagio0 inicial = new PokemonEstagio0("Squirtle", 1, iniciante);
-			iniciante.time.add(inicial);
-        }else if (num == 2){
-            PokemonEstagio0 inicial = new PokemonEstagio0("Bulbasaur", 1, iniciante);
-			iniciante.time.add(inicial);
-        }else if (num == 3){
-            PokemonEstagio0 inicial = new PokemonEstagio0("Charmander", 1, iniciante);
-			iniciante.time.add(inicial);
-        }else{
-            limparTela();
-            System.out.println("Opção inválida");
-            Thread.sleep(300);
+		} else if(validarInteiro(numStr)){
+			num = Integer.parseInt(numStr);
+			
+				if (num == 1){
+            		PokemonEstagio0 inicial = new PokemonEstagio0("Squirtle", 1, iniciante);
+					iniciante.time.add(inicial);
+        		}else if (num == 2){
+            		PokemonEstagio0 inicial = new PokemonEstagio0("Bulbasaur", 1, iniciante);
+					iniciante.time.add(inicial);
+        		}else if (num == 3){
+            		PokemonEstagio0 inicial = new PokemonEstagio0("Charmander", 1, iniciante);
+					iniciante.time.add(inicial);
+        		}else{
+            		System.out.println("        Opção inválida");
+            	
         }
+
+		} else {
+			System.out.println("        Opção Inválida");
+		}
+		
+		} while(num<=0);
+		
 	}
 
 	private static void cadastroTreinador( Scanner scan, Treinador iniciante) throws IOException, InterruptedException {
@@ -205,9 +211,7 @@ public class Main {
 		}
 	
 		} while(idade<=0);
-
 		
-		//Treinador iniciante = new Treinador(nome, genero, idade);
 		iniciante.setNome(nome);
 		iniciante.setIdade(idade);
 		iniciante.setGenero(genero);
