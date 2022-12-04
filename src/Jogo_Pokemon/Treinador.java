@@ -56,8 +56,4 @@ public class Treinador extends Pessoa {
 		System.out.println("=================================");
 
     }
-
-    public boolean validarCaptura(String nome2, Treinador iniciante) {
-        return false;
-    }
 }

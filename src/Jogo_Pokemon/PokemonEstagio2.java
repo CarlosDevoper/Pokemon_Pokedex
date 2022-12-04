@@ -11,9 +11,22 @@ public class PokemonEstagio2 extends Pokemon {
     null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null,  "Dragonite", null, null));
 
-    public void evoluir(){
+
+    public static Boolean validarPokemon(String pokemon){
         
-    }    
+        boolean existe;
+        if(PokemonsEstagio2.contains(pokemon)){
+            existe = true;
+        }else{
+            existe = false;
+        }
+        return existe;
+    }
+
+    @Override
+    public void evoluir(Pokemon pokemon){
+        System.out.printf("Seu %s não pode evoluir\n", pokemon.getNome());
+    } 
     
     PokemonEstagio2(String nome, Treinador iniciante){
         this.nome = nome;

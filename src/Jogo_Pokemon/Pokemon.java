@@ -36,6 +36,10 @@ public abstract class Pokemon {
         }
     }
 
+
+    public void evoluir(Pokemon pokemon){
+        System.out.printf("Pokemon %s está evoluindo\n", pokemon.getNome());
+    }
     public static Boolean validarPokemon(String pokemon){
         
         boolean existe;
@@ -47,18 +51,34 @@ public abstract class Pokemon {
         return existe;
     }
 
-    public Boolean validarCaptura(String pokemon, Treinador iniciante){
+    public static Boolean validarCaptura(String pokemon, Treinador iniciante){
+        
         Boolean captura;
         Random chance = new Random();
-        ArrayList<Integer> pego = new ArrayList<>(Arrays.asList(1,1,1,0));
-        int chances = chance.nextInt(4);
-
+        ArrayList<Integer> pego = new ArrayList<>(Arrays.asList(1,1,0,0));
+        int chances = chance.nextInt(0,pego.size());
+        
         if(pego.get(chances) == 1){
-            PokemonEstagio0 inicial = new PokemonEstagio0(pokemon, iniciante);
-            if(iniciante.time.size()<6){
-                iniciante.time.add(inicial);
+            if(PokemonEstagio0.validarPokemon(pokemon)){
+                PokemonEstagio0 novoPokemon = new PokemonEstagio0(pokemon, iniciante);
+                
+                if(iniciante.time.size()<6){
+                    iniciante.time.add(novoPokemon);
+                 }
+            }else if(PokemonEstagio1.validarPokemon(pokemon)){
+                PokemonEstagio1 novoPokemon = new PokemonEstagio1(pokemon, iniciante);
+                
+                if(iniciante.time.size()<6){
+                    iniciante.time.add(novoPokemon);
+                 }
+            }else if(PokemonEstagio2.validarPokemon(pokemon)){
+                PokemonEstagio2 novoPokemon = new PokemonEstagio2(pokemon, iniciante);
+                
+                if(iniciante.time.size()<6){
+                    iniciante.time.add(novoPokemon);
+                 }
             }
-            captura = true;
+        captura = true;
 
         } else {
             captura = false;

@@ -75,7 +75,7 @@ public class Main {
 		System.out.println("2 - Meu Time");
         System.out.println("3 - Capturar Pokemon");
 		System.out.println("4 - Meus Pokemons");
-		System.out.println("5 - Evoluir Level de Pokemon");
+		System.out.println("5 - Upar Level de Pokemon");
 		System.out.println("6 - Evoluir Pokemon");
 		System.out.println("7 - Pokemons Existentes");
 		System.out.println("8 - Sair");
@@ -103,7 +103,7 @@ public class Main {
                 return true;
 			
 			case 6:
-                evoluirPokemon(scan);
+                evoluirPokemon(scan, iniciante);
                 return true;
 			
 			case 7:
@@ -147,28 +147,30 @@ public class Main {
 		if(validarString(numStr)){
 			System.out.println("        Opção Inválida");
 
-		} else if(validarInteiro(numStr)){
+			} else if(validarInteiro(numStr)){
 			num = Integer.parseInt(numStr);
 			
 				if (num == 1){
             		PokemonEstagio0 inicial = new PokemonEstagio0("Squirtle", 1, iniciante);
 					iniciante.time.add(inicial);
+					break;
         		}else if (num == 2){
             		PokemonEstagio0 inicial = new PokemonEstagio0("Bulbasaur", 1, iniciante);
 					iniciante.time.add(inicial);
+					break;
         		}else if (num == 3){
             		PokemonEstagio0 inicial = new PokemonEstagio0("Charmander", 1, iniciante);
 					iniciante.time.add(inicial);
-        		}else{
-            		System.out.println("        Opção inválida");
-            	
-        }
+					break;
+        		} else{
+					System.out.println("        Opção Inválida");
+				}
 
-		} else {
+			} else {
 			System.out.println("        Opção Inválida");
-		}
+			}
 		
-		} while(num<=0);
+		} while(num !=1 || num !=2 || num !=3);
 		
 	}
 
@@ -253,6 +255,11 @@ public class Main {
 			System.out.println("    Opção inválida, por favor tente novamente");
 		} else if(validarInteiro(IDSTR)){
 			ID = Integer.parseInt(IDSTR);
+			if (ID> iniciante.Pokemons_Capturados.size()){
+				System.out.println("  este Pokemon não existe, por favor");
+				System.out.println("      insira um ID existente");
+				ID = 0;
+			}
 		} else{
 			System.out.println("    Opção inválida, por favor tente novamente");
 		}
@@ -305,7 +312,34 @@ public class Main {
 		voltarMenu();
 	}
 
-	private static void evoluirPokemon(Scanner scan) {
+	private static void evoluirPokemon(Scanner scan, Treinador iniciante) throws IOException, InterruptedException {
+		limparTela();
+		System.out.println("=================================");
+		System.out.println("      Escolha o Pokemon:");
+		System.out.println("=================================");
+		
+		String IDSTR;
+		int ID = 0;
+		do{
+		System.out.print("    >> ID:");
+		IDSTR = scan.nextLine();
+		
+		if(validarString(IDSTR)){
+			System.out.println("    Opção inválida, por favor tente novamente");
+		} else if(validarInteiro(IDSTR)){
+			ID = Integer.parseInt(IDSTR);
+			if (ID> iniciante.Pokemons_Capturados.size()){
+				System.out.println("  este Pokemon não existe, por favor");
+				System.out.println("      insira um ID existente");
+				ID = 0;
+			}
+		} else{
+			System.out.println("    Opção inválida, por favor tente novamente");
+		}
+		} while(ID<=0);
+		iniciante.Pokemons_Capturados.get(ID-1).evoluir(iniciante.Pokemons_Capturados.get(ID-1));
+		voltarMenu();
+
 	}
 
 	private static void mostrarPokemons(Treinador iniciante) throws IOException, InterruptedException {
@@ -333,7 +367,7 @@ public class Main {
 		System.out.print("    >> Nome:");
 		String nome = scan.nextLine();
 		if(Pokemon.validarPokemon(nome)){
-			if(iniciante.validarCaptura(nome, iniciante)){
+			if(Pokemon.validarCaptura(nome, iniciante)){
 				System.out.println("    Capturando...");
         		Thread.sleep(3000);
         		System.out.println("    Pokemon capturado com Sucesso!\n");

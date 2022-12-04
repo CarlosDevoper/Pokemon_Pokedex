@@ -13,8 +13,21 @@ public class PokemonEstagio0 extends Pokemon{
     "Jynx", "Electabuzz", "Magmar", "Pinsir","Tauros", "Magikarp", "Lapras", "Ditto", "Eevee", "Porygon", "Omanyte", "Kabuto", "Aerodactyl", "Snorlax",
     "Articuno", "Zapdos", "Moltres", "Dratini", "Mewtwo", "Mew"));
 
-    public void evoluir(){
+
+    public static Boolean validarPokemon(String pokemon){
         
+        boolean existe;
+        if(PokemonsEstagio0.contains(pokemon)){
+            existe = true;
+        }else{
+            existe = false;
+        }
+        return existe;
+    }
+
+    @Override
+    public void evoluir(Pokemon pokemon){
+        System.out.printf("Pokemon %s está evoluindo para o estágio 1", pokemon.getNome());
     }
 
     PokemonEstagio0(String nome, Treinador iniciante){
