@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class PokemonEstagio1 extends Pokemon {
     
-    /* Array de objetos que guarda todos os pokemons da 1ª geração
+    /* Array de Strings que guarda todos os nomes dos pokemons da 1ª geração
     que possuem um primeiro estágio de evolução, array está organizado
     na forma que os pokemons aparecem na pokedex, caso seja null, significa
     que o pokemon de estágio anterior, não possui um estágio 1
@@ -45,9 +45,9 @@ public class PokemonEstagio1 extends Pokemon {
             System.out.printf("    Seu %s não pode evoluir\n\n", pokemon.getNome());
         }else{
             
-            System.out.printf("  Seu %s está evoluindo para %s..\n\n", pokemon.getNome(), PokemonEstagio2.PokemonsEstagio2.get(n));
+            System.out.printf(" Seu %s está evoluindo para %s..\n\n", pokemon.getNome(), PokemonEstagio2.PokemonsEstagio2.get(n));
             Thread.sleep(3000);
-            System.out.println("         Pokemon evoluído com sucesso!\n");
+            System.out.println("        Pokemon evoluído com sucesso!\n");
 
             PokemonEstagio2 pokemonEvoluido = new PokemonEstagio2(PokemonEstagio2.PokemonsEstagio2.get(n), iniciante, pokemon.getLeve());
             iniciante.Pokemons_Capturados.remove(pokemon);

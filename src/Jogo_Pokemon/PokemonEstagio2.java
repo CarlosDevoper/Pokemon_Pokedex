@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class PokemonEstagio2 extends Pokemon {
     
-    /* Array de objetos que guarda todos os pokemons da 1ª geração
+    /* Array de Strings que guarda todos os nomes dos pokemons da 1ª geração
     que possuem um segundo estágio de evolução, array está organizado
     na forma que os pokemons aparecem na pokedex, caso seja null, significa
     que o pokemon de estágio anterior, não possui um estágio 2
@@ -38,7 +38,7 @@ public class PokemonEstagio2 extends Pokemon {
     */
     @Override
     public void evoluir(Pokemon pokemon, int ID, Treinador iniciante){
-        System.out.printf("     Seu %s não pode evoluir\n", pokemon.getNome());
+        System.out.printf("    Seu %s não pode evoluir\n", pokemon.getNome());
     } 
     
     // Construtor utilizado quando se captura um pokemon estagio 2

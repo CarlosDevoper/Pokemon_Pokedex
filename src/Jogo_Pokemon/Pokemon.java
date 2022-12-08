@@ -11,6 +11,9 @@ public abstract class Pokemon {
     int estagio;
     int level;
 
+
+    /* Array de Strings que guarda todos os nomes dos pokemons da 1ª geração
+    */
     public static ArrayList<String> Pokemons = new ArrayList<>(Arrays.asList("Bulbasaur", "Ivysaur", "Venusaur", "Charmander", "Charmeleon", "Charizard",
     "Squirtle", "Wartortle", "Blastoise", "Caterpie", "Metapod", "Butterfree", "Weedle", "Kakuna", "Beedrill",
     "Pidgey", "Pidgeotto", "Pidgeot", "Rattata", "Raticate", "Spearow", "Fearow", "Ekans", "Arbok", "Pikachu", "Raichu",
@@ -26,6 +29,10 @@ public abstract class Pokemon {
     "Tauros", "Magikarp", "Gyarados", "Lapras", "Ditto", "Eevee", "Vaporeon", "Jolteon", "Flareon", "Porygon", "Omanyte", "Omastar",
     "Kabuto", "Kabutops", "Aerodactyl", "Snorlax", "Articuno", "Zapdos", "Moltres", "Dratini", "Dragonair", "Dragonite", "Mewtwo", "Mew"));
      
+
+    /* Método que mostra todos os pokemons presentes no array
+    pokemons, mostrando na ordem real que é apresentado os pokemons
+     */
     public static void Pokedex(){
         int n = Pokemons.size();
         int v = 1;
@@ -38,9 +45,14 @@ public abstract class Pokemon {
     }
 
 
-    public void evoluir(Pokemon pokemon, int ID, Treinador iniciante) throws InterruptedException, IOException{
-        System.out.printf("Pokemon %s está evoluindo\n", pokemon.getNome());
-    }
+    /* método abstrato evoluir, onde cada tipo de pokemon vai implementar
+    de uma forma diferente
+     */
+    abstract public void evoluir(Pokemon pokemon, int ID, Treinador iniciante) throws InterruptedException, IOException;
+    
+    /* Método que verifica se o nome do pokemon passado como parâmetro
+    está presenta no array pokemons, para validar sua existência
+    */
     public static Boolean validarPokemon(String pokemon){
         
         boolean existe;
@@ -52,6 +64,9 @@ public abstract class Pokemon {
         return existe;
     }
 
+    /* Método que vai validar a captura de um pokemon, que utiliza alguns métodos auxiliares
+    para validar se o pokemon
+     */
     public static Boolean validarCaptura(String pokemon, Treinador iniciante){
         
         Boolean captura;
@@ -89,7 +104,6 @@ public abstract class Pokemon {
 
     }
 
-
     public String getNome(){
         return nome;
     }
@@ -118,9 +132,12 @@ public abstract class Pokemon {
         return level;
     }
 
+    /* Método que gera um level aleatório para o pokemon
+    entre 1 e 60
+     */
     public int getRandomLevel() {
         Random random = new Random();
-        int randomLevel = random.nextInt(100);
+        int randomLevel = random.nextInt(1, 60);
         
         return randomLevel;
     }

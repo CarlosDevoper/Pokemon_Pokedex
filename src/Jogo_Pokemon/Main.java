@@ -169,31 +169,37 @@ public class Main {
 		System.out.println("=================================");
 		System.out.println("    Qual Pokemon quer capturar?:");
 		System.out.println("=================================");
+		String nome;
+		do{
 		System.out.print("    >> Nome:");
-		String nome = scan.nextLine();
-		nome = nome.toLowerCase();
-		nome = nome.substring(0,1).toUpperCase().concat(nome.substring(1));
-
-		if(Pokemon.validarPokemon(nome)){
-			if(Pokemon.validarCaptura(nome, iniciante)){
-				System.out.println("    Capturando...");
-        		Thread.sleep(3000);
-        		System.out.println("    Pokemon capturado com Sucesso!\n");
-				if(iniciante.time.size()>6){
-				System.out.println("Você já possui 6 pokemons em seu time");
-				System.out.println("      esse foi enviado para o pc");
-				}
-			} else{
-				System.out.println("    Capturando...");
-        		Thread.sleep(3000);
-        		System.out.printf("    O %s fugiu\n", nome);
-			}	
-		} else {
-			Thread.sleep(2000);
+		nome = scan.nextLine();
+		if(validarString(nome)){
 			System.out.println("    Pokemon não econtrado");
+		}else{
+			nome = nome.toLowerCase();
+			nome = nome.substring(0,1).toUpperCase().concat(nome.substring(1));
+			if(Pokemon.validarPokemon(nome)){
+			
+				if(Pokemon.validarCaptura(nome, iniciante)){
+					System.out.println("    Capturando...");
+					Thread.sleep(3000);
+					System.out.println("    Pokemon capturado com Sucesso!\n");
+					if(iniciante.time.size()>6){
+					System.out.println("Você já possui 6 pokemons em seu time");
+					System.out.println("      esse foi enviado para o pc");
+					}
+				} else{
+					System.out.println("    Capturando...");
+					Thread.sleep(3000);
+					System.out.printf("    O %s fugiu\n", nome);
+				}	
+			} else {
+				System.out.println("    Pokemon não econtrado");
+			}
+			System.out.println("=================================");
+			voltarMenu();
 		}
-		System.out.println("=================================");
-		voltarMenu();
+		} while(validarString(nome));
 	}
 
 	/* Método que chama a quarta função do menu, onde mostra todos
@@ -239,10 +245,13 @@ public class Main {
 		}
 		} while(ID<=0);
 
-		System.out.println("\n       Pokemon Escolhido:");
+		limparTela();
+		System.out.println("=================================");
+		System.out.println("       Pokemon Escolhido:");
 		iniciante.mostrarPokemon(ID);
 		
-		System.out.println("\n Quantos Levels quer subir?");
+		System.out.println("\n   Quantos Levels quer subir?");
+		System.out.println("=================================");
 		String LevelStr;
 		int Level = 0;
 		
@@ -256,16 +265,20 @@ public class Main {
 			Level = Integer.parseInt(LevelStr);
 			limparTela();
 			if(Level>1){
-				System.out.printf("\n Seu %s vai está evoluindo %s leveis\n", iniciante.Pokemons_Capturados.get(ID-1).getNome(), LevelStr);
+				System.out.println("=========================================");
+				System.out.printf(" Seu %s vai está evoluindo %s leveis\n", iniciante.Pokemons_Capturados.get(ID-1).getNome(), LevelStr);
 				Thread.sleep(2000);
 				
 			} else{
+				System.out.println("=========================================");
 				System.out.printf("\nSeu %s está evoluindo %s level\n", iniciante.Pokemons_Capturados.get(ID-1).getNome(), LevelStr);
 				Thread.sleep(2000);
 			}
 			iniciante.Pokemons_Capturados.get(ID-1).setLevel(Level);
 		    iniciante.mostrarPokemon(ID);
+			System.out.println("=========================================\n");
 			voltarMenu();
+
 		} else{
 			System.out.println("    Opção inválida, por favor tente novamente");
 		}
@@ -302,7 +315,9 @@ public class Main {
 		}
 		} while(ID<=0);
 		limparTela();
+		System.out.println("===========================================");
 		iniciante.Pokemons_Capturados.get(ID-1).evoluir(iniciante.Pokemons_Capturados.get(ID-1), ID-1, iniciante);
+		System.out.println("===========================================\n");
 		voltarMenu();
 
 	}
@@ -329,6 +344,16 @@ public class Main {
 		limparTela();
 		System.out.println("Saindo do Jogo...");
 		Thread.sleep(2000);
+		limparTela();
+		System.out.println("=================================");
+		System.out.printf("  Espero que tenha gostado, sua\n");
+		System.out.printf("    aventura ainda não acabou. \n");
+		System.out.printf("        Até a próxima... \n");
+		System.out.println("=================================");
+		
+		Thread.sleep(3000);
+		limparTela();
+		
 		
 	}
 

@@ -37,7 +37,4 @@ public abstract class Pessoa {
         return idade;
     }
     
-    public void apresentacao(){
-        System.out.printf("Olá, me chamo %s tenho %d da região de Kanto", getNome(), getIdade());
-    }
 }

@@ -14,9 +14,6 @@ public class Treinador extends Pessoa {
     */
     protected ArrayList<Pokemon> Pokemons_Capturados = new ArrayList<>();
 
-    String nome;
-    int idade;
-
     /* Método que mostra os pokemons que fazem parte do time
     do treinador, percorrendo o array referente ao time
     */
@@ -69,4 +66,7 @@ public class Treinador extends Pessoa {
 		System.out.println("=================================");
     }
     
+    Treinador(){
+        Pessoa.Pessoas.add(this);
+    }
 }
